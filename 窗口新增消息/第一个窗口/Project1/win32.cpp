@@ -54,70 +54,74 @@ LRESULT/*long*/ CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM/*unsigned int*/
 			PostQuitMessage(0);
 		}
 		break;
-	case WM_LBUTTONDOWN://鼠标左键按下
-		//LParam4个字节 2个字
+	//case WM_LBUTTONDOWN://鼠标左键按下
+	//	//LParam4个字节 2个字
 
-		TCHAR str[256];
-		wsprintf(str, L"左键按下（%d,%d）", x, y);//先按
-		if (wParam&MK_CONTROL)
-		{
-			wcscat(str, L"按下了ctrol");
-		}
-		if (wParam&MK_RBUTTON)
-		{
-			wcscat(str, L"按下you");
-		}
-		if (wParam&MK_SHIFT)
-		{
-			wcscat(str, L"按下shirt");
-		}
-		if (wParam&MK_MBUTTON)
-		{
-			wcscat(str, L"按下中间键");
-		}
+	//	TCHAR str[256];
+	//	wsprintf(str, L"左键按下（%d,%d）", x, y);//先按
+	//	if (wParam&MK_CONTROL)
+	//	{
+	//		wcscat(str, L"按下了ctrol");
+	//	}
+	//	if (wParam&MK_RBUTTON)
+	//	{
+	//		wcscat(str, L"按下you");
+	//	}
+	//	if (wParam&MK_SHIFT)
+	//	{
+	//		wcscat(str, L"按下shirt");
+	//	}
+	//	if (wParam&MK_MBUTTON)
+	//	{
+	//		wcscat(str, L"按下中间键");
+	//	}
 
-		SetWindowText(hWnd, str);
-		break;
-	
-	case WM_LBUTTONUP:
+	//	SetWindowText(hWnd, str);
+	//	break;
+	//
+	//case WM_LBUTTONUP:
 
-		TCHAR s[256];
-		wsprintf(s, L"左键抬起（%d,%d）", x, y);//先按
-		if (wParam&MK_CONTROL)
-		{
-			wcscat(s, L"按下了ctrol");
-		}
-		if (wParam&MK_RBUTTON)
-		{
-			wcscat(s, L"按下you");
-		}
-		if (wParam&MK_SHIFT)
-		{
-			wcscat(s, L"按下shirt");
-		}
-		if (wParam&MK_MBUTTON)
-		{
-			wcscat(s, L"按下中间键");//额外增加文字
-		}
+	//	TCHAR s[256];
+	//	wsprintf(s, L"左键抬起（%d,%d）", x, y);//先按
+	//	if (wParam&MK_CONTROL)
+	//	{
+	//		wcscat(s, L"按下了ctrol");
+	//	}
+	//	if (wParam&MK_RBUTTON)
+	//	{
+	//		wcscat(s, L"按下you");
+	//	}
+	//	if (wParam&MK_SHIFT)
+	//	{
+	//		wcscat(s, L"按下shirt");
+	//	}
+	//	if (wParam&MK_MBUTTON)
+	//	{
+	//		wcscat(s, L"按下中间键");//额外增加文字
+	//	}
 
-		SetWindowText(hWnd, s);
-		break;
-	
-	case WM_LBUTTONDBLCLK:
-	{
-		SetWindowText(hWnd,L"双击");
-	}
-		break;
+	//	SetWindowText(hWnd, s);
+	//	break;
+	//
+	//case WM_LBUTTONDBLCLK:
+	//{
+	//	SetWindowText(hWnd,L"双击");
+	//}
+	//	break;
 
-	case WM_MOUSEMOVE://移动
-		wsprintf(s, L"左键抬起（%d,%d）", x, y);//先按
-		SetWindowText(hWnd, s);
-		break;
+	//case WM_MOUSEMOVE://移动
+	//	wsprintf(s, L"左键抬起（%d,%d）", x, y);//先按
+	//	SetWindowText(hWnd, s);
+	//	break;
 	case WM_KEYDOWN:
 		switch (wParam)
 		{
 		case VK_SPACE://空格
-			SetWindowText(hWnd,L"按下空格");
+		{
+			int x = 50;
+			int y = 100;
+			SendMessage(hWnd, WM_LBUTTONDOWN, 0, MAKELPARAM(x, y));
+		}
 			break;
 		case VK_SHIFT:
 			SetWindowText(hWnd, L"按下shift");
@@ -148,14 +152,14 @@ LRESULT/*long*/ CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM/*unsigned int*/
 		}
 		break;
 		 
-	case WM_CHAR://由按下消息和抬起消息组合成   由消息循环中的函数TranslateMessage(&msg)处理;
-	{
-					 TCHAR ch = (TCHAR)wParam;
-					 TCHAR sss[256];
-					 wsprintf(sss, L"字符:%c", ch);
-					 SetWindowText(hWnd, sss);
-					 break;
-	}
+	//case WM_CHAR://由按下消息和抬起消息组合成   由消息循环中的函数TranslateMessage(&msg)处理;
+	//{
+	//				 TCHAR ch = (TCHAR)wParam;
+	//				 TCHAR sss[256];
+	//				 wsprintf(sss, L"字符:%c", ch);
+	//				 SetWindowText(hWnd, sss);
+	//				 break;
+	//}
 	case WM_TIMER:
 	{
 		int nTimerID = wParam;
